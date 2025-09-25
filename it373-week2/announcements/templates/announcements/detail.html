@@ -1,0 +1,27 @@
+{% extends "announcements/base.html" %}
+{% block title %}{{ announcement.title }}{% endblock %}
+{% block head %}
+<script>
+function toggleReadMore() {
+    const content = document.getElementById("content");
+    const btn = document.getElementById("toggleBtn");
+    content.classList.toggle("collapsed");
+    btn.innerText = content.classList.contains("collapsed") ? "Read more" : "Show less";
+}
+</script>
+<style>
+#content.collapsed {
+    max-height: 150px;
+    
+}
+</style>
+{% endblock %}
+{% block content %}
+<div class="card">
+  <h2>{{ announcement.title }}</h2>
+  <p id="content" class="collapsed">{{ announcement.content }}</p>
+  <button id="toggleBtn" onclick="toggleReadMore()" class="btn-link">Read more</button>
+  <br><br>
+  <a href="/announcements/" class="btn btn-secondary">← Back</a>
+</div>
+{% endblock %}

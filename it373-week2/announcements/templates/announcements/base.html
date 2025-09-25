@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}My WebSite{% endblock %}</title>
+  <style>
+    * { 
+      margin: 0; padding: 0; 
+      box-sizing: border-box; 
+    }
+    body { 
+      font-family: Arial, sans-serif; 
+      background: maroon; 
+      color: #333; 
+      line-height: 1.6; 
+    }
+
+    nav {
+      background: #2c3e50;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav .brand { font-weight: bold; font-size: 1.2em; }
+    nav ul { list-style: none; display: flex; gap: 20px; }
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      padding: 5px 10px;
+      transition: background 0.3s;
+    }
+    nav ul li a:hover { background: #34495e; border-radius: 5px; }
+
+    .container { max-width: 900px; margin: 20px auto; padding: 0 15px; }
+
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+      margin-top: 120px;
+      padding: 40px;
+      transition: transform 0.2s;
+    }
+    .card:hover { transform: translateY(-2px); }
+
+    .btn {
+      display: inline-block;
+      padding: 8px 14px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 0.9em;
+      margin-top: 50px;
+    }
+    .btn-primary { background: #3498db; color: #fff; }
+    .btn-primary:hover { background: #2980b9; }
+    .btn-secondary { background: #95a5a6; color: #fff; }
+    .btn-secondary:hover { background: #7f8c8d; }
+    .btn-link { background: none; color: #3498db; border: none; cursor: pointer; padding: 0; }
+    .btn-link:hover { text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      nav ul { flex-direction: column; background: #2c3e50; position: absolute; top: 50px; left: 0; width: 100%; display: none; }
+      nav ul.show { display: flex; }
+      nav .menu-toggle { display: block; cursor: pointer; }
+    }
+    @media (min-width: 601px) {
+      nav .menu-toggle { display: none; }
+    }
+  </style>
+  {% block head %}{% endblock %}
+</head>
+<body>
+  <nav>
+    <div class="brand">My WebSite</div>
+    <div class="menu-toggle" onclick="document.querySelector('nav ul').classList.toggle('show')">☰</div>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/announcements/">Announcements</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    {% block content %}{% endblock %}
+  </div>
+</body>
+</html>
