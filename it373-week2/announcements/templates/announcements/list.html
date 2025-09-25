@@ -1,0 +1,52 @@
+{% extends 'announcements/base.html' %}
+
+{% block title %}Announcements{% endblock %}
+
+{% block content %}
+
+
+<h1>Announcements</h1>
+<ul>
+  {% for ann in announcements %}
+    <li>
+      <a href="{% url 'announcement_detail' ann.pk %}">{{ ann.title }}</a>
+      <button class="toggle-btn">Read more</button>
+      <p class="summary">{{ ann.summary }}</p>
+    </li>
+  {% empty %}
+  <div>
+    <a href="url">2023-2056</a>
+  </div>
+   <div>
+    <a href="url">2023-2056</a>
+  </div>
+   <div>
+    <a href="url">2023-2056</a>
+  </div>
+  {% endfor %}
+</ul>
+
+<div id="toggle-bar" style="position: static; margin-top: 15px;">
+  <button id="toggle-btn">Read more</button>
+</div>    
+
+<script>
+
+
+  document.addEventListener("DOMContentLoaded", function() {
+    const buttons = document.querySelectorAll('.toggle-btn');
+
+    buttons.forEach(function(button) {
+      button.addEventListener('click', function() {
+        const summary = this.nextElementSibling;
+        const isVisible = summary.style.display === 'content';
+
+        summary.style.display = isVisible ? 'none' : 'content';
+        this.textContent = isVisible ? 'Read more' : 'Show less';
+      });
+    });
+  });
+</script>
+
+
+{% endblock %}
